@@ -7,12 +7,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(form_params)
 
-    #check if user can save
+    # check if the user can save
     if @user.save
-      #keep hold of that usern
+      # save the user id of that session
       session[:user_id] = @user.id
 
-      flash[:success] = 'Welcome to Source!'
+      #let the user know they signed up
+      flash[:success] = "Welcome to Source!"
+
       redirect_to root_path
     else
       render 'new'

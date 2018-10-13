@@ -1,11 +1,12 @@
 class SessionsController < ApplicationController
 
   def new
-    #we dont need any variables in here because we're not adding to the database, we're just adding to a session
+    # we dont need any variables here because we're not addingt o the database
+
   end
 
+
   def create
-    #@username is a variable, it changes :username is a symbol, doesn't change.
     @username = form_params[:username]
     @password = form_params[:password]
 
@@ -14,12 +15,13 @@ class SessionsController < ApplicationController
     if @user.present?
       session[:user_id] = @user.id
       flash[:success] = 'You are now logged in!'
-
       redirect_to root_path
     else
-      render 'new'
+      render "new"
     end
   end
+
+
 
   def destroy
     reset_session
@@ -33,6 +35,5 @@ class SessionsController < ApplicationController
   def form_params
     params.require(:session).permit(:username, :password)
   end
-
 
 end
